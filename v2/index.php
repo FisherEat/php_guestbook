@@ -7,15 +7,13 @@
 date_default_timezone_set('PRC');
 
 # 1 连接数据库 服务器
-$db = @mysql_connect( 'localhost' ,'root' , '' ) or die('数据库服务器连接失败sadf 答复');
+$db = @mysql_connect( 'localhost' ,'root' , '' ) or die('数据库服务器连接失败');
 
 # 2 选择数据库
 mysql_select_db('guest');
 
 # 3 设置编码
 mysql_query( 'set names utf8' );
-
-
 
 # 构建sql查询语句
 $query = 'SELECT * FROM message';
@@ -31,6 +29,7 @@ while ( $row = mysql_fetch_assoc($result) ) {
 # 打印输出
 // print_r($data);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +51,8 @@ while ( $row = mysql_fetch_assoc($result) ) {
 	    		<th width="20px">序号</th>
 	    		<th width="300px">标题</th>
 	    		<th width="80px">时间</th>
-	    		<th width="50px">操作</td>
+	    		<th width="50px">操作</th>
+					<th width="100px">备注</th>
 	    	</tr>
 
 	    	<?php foreach($data as $key=>$value){ ?>
@@ -64,6 +64,7 @@ while ( $row = mysql_fetch_assoc($result) ) {
 	    			<a href="show.php?id=<?php echo $value['id'];?>">编辑</a>
 	    			<a href="delete.php?id=<?php echo $value['id'];?>&action=1" class="del-link">删除</a>
 	    		</td>
+					<td><?php echo $value['remark']; ?></td>
 	    	</tr>
 	    	<?php }?>
 
@@ -72,7 +73,7 @@ while ( $row = mysql_fetch_assoc($result) ) {
 
 	<!-- 提示信息 -->
 	<div class="tips-box">
-		<h3></h3>
+		<h3>桃李春风一杯酒，江湖夜雨十年灯</h3>
 	</div>
 
 	<!-- jq -->
